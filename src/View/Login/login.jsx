@@ -73,7 +73,7 @@ function Login(){
                         if (response.role === 'admin') {
                           window.location.href = '#/';
                         } else if (response.role === 'player') {
-                        window.location.href = '#/user';
+                        window.location.href = '#/view';
                         }
                       }
                     } catch (error) {

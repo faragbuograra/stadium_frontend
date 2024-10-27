@@ -12,6 +12,8 @@ import ListMatch from "./View/Match/list";
 import ListMStadium from "./View/MdStadium/list";
 import Signup from "./View/Signup/login";
 import ListUserStadium from "./View/Stadium/userlist";
+import UserView from "./View/User/view";
+import NewMatch from "./View/Match/new";
 
 
 function App() {
@@ -20,12 +22,12 @@ function App() {
     <>
       <div className="flex w-full bg-gray-50">
       {location.pathname === "/login"    || location.pathname === "/Signup" || 
-      location.pathname === "/user" 
+   location.pathname.startsWith("/view") 
        ? null : <NavBar />}
         <div className="flex flex-col w-full">
         {location.pathname === "/login" 
         || location.pathname === "/Signup" || 
-        location.pathname === "/user" 
+        location.pathname.startsWith("/view") 
          ? null : <AppBar />}
           <Routes>
             <Route path="/login" element={<Login />} />
@@ -35,6 +37,9 @@ function App() {
             <Route path="/MStadium" element={<ListMStadium />} />
             <Route path="/stadium" element={<ListStadium />} />
             <Route path="/user" element={<ListUserStadium />} />
+            <Route path="/view" element={<UserView />} />
+            <Route path="/view/stadium/:id" element={<NewMatch />} />
+            
             <Route path="/Match" element={<ListMatch />} />
           </Routes>
         </div>

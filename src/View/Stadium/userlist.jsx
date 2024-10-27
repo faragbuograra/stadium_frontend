@@ -24,9 +24,9 @@ const [totalPages, setTotalPages] = React.useState(0);
 
   const loadData = async (page) => {
     try {
-      // const res = await fetchData(`Admin/stadium?page=${page}&paginate=${pageSize}`);
-      // setData(res.data);
-      // setTotalPages(res.meta.last_page); // تحديث عدد الصفحات الكلي
+      const res = await fetchData(`stadium?page=${page}&paginate=${pageSize}`);
+      setData(res.data);
+      setTotalPages(res.meta.last_page); // تحديث عدد الصفحات الكلي
     } catch (e) {
       console.log(e);
     }
@@ -37,11 +37,32 @@ const [totalPages, setTotalPages] = React.useState(0);
   return (
     
     <>
-			{/* <Header /> */}
-			{/* <Testmonials />
-			<Opinion />
-			<Contact />
-			<CopyRights /> */}
+ 
+    <div className="flex flex-wrap justify-center">
+      {data.map((item) => (
+        <Card  className="m-2"
+        sx={{ maxWidth: 345 }} key={item.id}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              height="140"
+              image={'https://m.media-amazon.com/images/I/61eBvmR2L8L._AC_UF1000,1000_QL80_.jpg'}
+              alt="green iguana"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+              <h1 className="text-2xl font-bold text-right">
+                <Link to={`stadium/${item.id}`}>{item.name}</Link>
+              </h1>
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {item.description}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      ))}
+    </div>
 		</>
    
   );

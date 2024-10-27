@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import fetchData from "../../api/BaseApi";
 
 
-function ListStadium(){
+function ReqListPlayers(){
   const [page, setPage] = React.useState(1);
 const [data, setData] = React.useState([]);
 const [totalPages, setTotalPages] = React.useState(0);
@@ -25,7 +25,7 @@ const [totalPages, setTotalPages] = React.useState(0);
 
   const loadData = async (page) => {
     try {
-      const res = await fetchData(`Admin/stadium?page=${page}&paginate=${pageSize}`);
+      const res = await fetchData(`Admin/Players?page=${page}&paginate=${pageSize}`);
       setData(res.data);
       setTotalPages(res.meta.last_page); // تحديث عدد الصفحات الكلي
     } catch (e) {
@@ -53,8 +53,8 @@ const [totalPages, setTotalPages] = React.useState(0);
   <div class="relative mx-4 mt-4 overflow-hidden text-slate-700 bg-white rounded-none bg-clip-border">
     <div class="flex items-center justify-between ">
         <div>
-            <h3 class="text-lg font-semibold text-slate-800">stadium List</h3>
-            <p class="text-slate-500">Review each stadium  before edit</p>
+            <h3 class="text-lg font-semibold text-slate-800">Players List</h3>
+            <p class="text-slate-500">Review each Players  before edit</p>
         </div>
       <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
         <button
@@ -119,7 +119,7 @@ const [totalPages, setTotalPages] = React.useState(0);
             class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
             <p
               class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500">
-              balance
+              Phone
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                 stroke="currentColor" aria-hidden="true" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -127,7 +127,32 @@ const [totalPages, setTotalPages] = React.useState(0);
               </svg>
             </p>
           </th>
-       
+          <th
+            class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
+            <p
+              class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500">
+              Username
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"></path>
+              </svg>
+            </p>
+          </th>
+         
+         
+          <th
+            class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
+            <p
+              class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500">
+              created_at
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"></path>
+              </svg>
+            </p>
+          </th>
           <th
             class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
             <p
@@ -166,12 +191,27 @@ const [totalPages, setTotalPages] = React.useState(0);
           <td class="p-3 border-b border-slate-200">
             <div class="flex flex-col">
               <p class="text-sm font-semibold text-slate-700">
-                {item.balance}
+                {item.phone}
               </p>
              
             </div>
           </td>
-     
+          <td class="p-3 border-b border-slate-200">
+            <div class="flex flex-col">
+              <p class="text-sm font-semibold text-slate-700">
+                {item.username}
+              </p>
+             
+            </div>
+          </td>
+        
+            
+   
+          <td class="p-3 border-b border-slate-200">
+            <p class="text-sm text-slate-500">
+                {item.created_at}
+            </p>
+          </td>
           <td class="p-3 border-b border-slate-200">
             <button
                onClick={
@@ -229,10 +269,10 @@ const [totalPages, setTotalPages] = React.useState(0);
       <div class="flex flex-col p-6">
         <h4
           class="text-2xl mb-1 font-semibold text-slate-700">
-          Edit stadium Details
+          Edit departments Details
         </h4>
         <p class="mb-3 mt-1 text-slate-400">
-          Enter or reset each information for the stadium access.
+          Enter or reset each information for the departments access.
         </p>
        
        <div class="w-full max-w-sm min-w-[200px] mt-4">
@@ -255,15 +295,15 @@ const [totalPages, setTotalPages] = React.useState(0);
         </div>
         <div class="w-full max-w-sm min-w-[200px] mt-4">
         <label class="block mb-1 text-sm text-slate-700">
-        balance
+        username
         </label>
         <input
-        value={dataEdit.balance}
+        value={dataEdit.username}
         onChange={
             (e) => {
                 setDataEdit({
                     ...dataEdit,
-                    balance: e.target.value
+                    username: e.target.value
                 });
             }
         }
@@ -271,7 +311,25 @@ const [totalPages, setTotalPages] = React.useState(0);
             class="w-full h-10 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
             placeholder="Enter your text" />
         </div>
-    
+        <div class="w-full max-w-sm min-w-[200px] mt-4">
+        <label class="block mb-1 text-sm text-slate-700">
+        phone
+        </label>
+        <input
+        value={dataEdit.phone}
+        onChange={
+            (e) => {
+                setDataEdit({
+                    ...dataEdit,
+                    phone: e.target.value
+                });
+            }
+        }
+            type="text"
+            class="w-full h-10 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
+            placeholder="Enter your text" />
+        </div>
+   
       </div>
       <div class="p-6 pt-0">
         <div class="flex space-x-2">
@@ -292,7 +350,7 @@ const [totalPages, setTotalPages] = React.useState(0);
             <button
             onClick={
                 () => {
-                    var res = fetchData('admin/stadium/' + dataEdit.id, '', '', 'PATCH', dataEdit);
+                    var res = fetchData('admin/users/' + dataEdit.id, '', '', 'PATCH', dataEdit);
                     res.then((res) => {
                         console.log(res);
                         setShow(false);
@@ -325,10 +383,10 @@ const [totalPages, setTotalPages] = React.useState(0);
       <div class="flex flex-col p-6">
         <h4
           class="text-2xl mb-1 font-semibold text-slate-700">
-            Add stadium Details
+            Add user Details
         </h4>
         <p class="mb-3 mt-1 text-slate-400">
-          Enter or reset each information for the stadium .
+          Enter or reset each information for the user .
         </p>
        
        <div class="w-full max-w-sm min-w-[200px] mt-4">
@@ -349,21 +407,55 @@ const [totalPages, setTotalPages] = React.useState(0);
         </div>
         <div class="w-full max-w-sm min-w-[200px] mt-4">
         <label class="block mb-1 text-sm text-slate-700">
-        balance
+        username
         </label>
         <input
             type="text"
             onChange={(e) => {
                 setDataAdd({
                     ...dataAdd,
-                    balance: e.target.value
+                    username: e.target.value
                 });
             }
             }
             class="w-full h-10 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
-            placeholder="Enter your balance" />
+            placeholder="Enter your username_pam" />
         </div>
-    
+        <div class="w-full max-w-sm min-w-[200px] mt-4">
+        <label class="block mb-1 text-sm text-slate-700">
+        phone
+        </label>
+        <input
+
+            type="text"
+            onChange={(e) => {
+                setDataAdd({
+                    ...dataAdd,
+                    phone: e.target.value
+                });
+            }
+            }
+            class="w-full h-10 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
+            placeholder="Enter your device_id" />
+            </div>
+            <div class="w-full max-w-sm min-w-[200px] mt-4">
+        <label class="block mb-1 text-sm text-slate-700">
+        password
+        </label>
+        <input
+
+            type="text"
+            onChange={(e) => {
+                setDataAdd({
+                    ...dataAdd,
+                    password: e.target.value
+                });
+            }
+            }
+            class="w-full h-10 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
+            placeholder="Enter your department_id" />
+            </div>
+         
        
        
        
@@ -389,8 +481,14 @@ const [totalPages, setTotalPages] = React.useState(0);
                 type="button"
                 onClick={
                     () => {
-                        var res = fetchData('admin/stadium', '', '', 'POST', 
-                        dataAdd
+                        var res = fetchData('admin/users', '', '', 'POST', 
+                        {
+                            name: dataAdd.name,
+                            username: dataAdd.username,
+                            phone: dataAdd.phone,
+                            password: dataAdd.password,
+                            role:'player'
+                        }
                         );
                         res.then((res) => {
                             console.log(res);
@@ -420,4 +518,4 @@ const [totalPages, setTotalPages] = React.useState(0);
   );
 }
 
-export default ListStadium;
+export default ReqListPlayers;

@@ -58,7 +58,7 @@ const fetchData = async (
     return await response.json();
   } catch (error) {
     showErrorToast(`Error: ${error.message}`);
-    throw error;
+ 
   }
 };
 

@@ -60,6 +60,25 @@ function Signup(){
                       } type="text" name="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="namem"  />
                   </div>
                   <div>
+                      <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your phone</label>
+                      <select onChange={
+                        (e) => {
+                          setState({
+                            ...state,
+                            role: e.target.value,
+                          });
+                        }
+                      }  class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="namem"  >
+
+                      <option value=""></option>
+                      <option value="player">Player</option>
+                      <option value="stadium">Stadium</option>
+               
+                      </select>
+
+
+                  </div>
+                  <div>
                       <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                       <input onChange={
                         (e) => {
@@ -91,12 +110,12 @@ function Signup(){
                         password: state.password,
                         phone: state.phone,
                         name: state.name,
-                        role: 'player'
+                        role: state.role,
                       });
                       if (response.token) {
                         localStorage.setItem('token', response.token);
                         localStorage.setItem('role', response.role);
-                        window.location.href = '#/player';
+                      
                       }
                     } catch (error) {
                       console.error(error);

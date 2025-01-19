@@ -11,12 +11,7 @@ function MYMatch(){
 const [data, setData] = React.useState([]);
 const [totalPages, setTotalPages] = React.useState(0);
   const [pageSize, setPageSize] = React.useState(100);
-  const [state, setState] = React.useState({});
-  const [flitter, setFlitter] = React.useState("");
-  const [type, setType] = React.useState("");
   const [show, setShow] = React.useState(false);
-  const [dataAdd, setDataAdd] = React.useState([]);
-  const [showadd, setShowadd] = React.useState(false);
   const [dataEdit, setDataEdit] = React.useState(false);
 
   useEffect(() => {

@@ -75,6 +75,9 @@ function Login(){
                         } else if (response.role === 'player') {
                         window.location.href = '#/view';
                         }
+                        else if (response.role === 'stadium') {
+                          window.location.href = '#/manager';
+                          }
                       }
                     } catch (error) {
                       console.error(error);

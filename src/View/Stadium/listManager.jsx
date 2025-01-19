@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // import { MultiSelect } from "primereact/multiselect";
 import fetchData from "../../api/BaseApi";
 
-function ListStadium() {
+function ListManager() {
   const [page, setPage] = React.useState(1);
   const [data, setData] = React.useState([]);
   const [totalPages, setTotalPages] = React.useState(0);
@@ -45,15 +45,15 @@ function ListStadium() {
 
   return (
     <>
-      <div style={{ margin: "20px" }}>
+      <div style={{ margin: "20px" }} dir="rtl">
         <div class="relative flex flex-col w-full h-full text-slate-700 bg-white shadow-md rounded-xl bg-clip-border">
           <div class="relative mx-4 mt-4 overflow-hidden text-slate-700 bg-white rounded-none bg-clip-border">
             <div class="flex items-center justify-between ">
               <div>
-                <h3 class="text-lg font-semibold text-slate-800">
-                  stadium List
-                </h3>
-                <p class="text-slate-500">Review each stadium before edit</p>
+               
+                <p class="text-slate-500">
+                  يرجى تحديد عدد الصفوف التي تريد عرضها
+                </p>
               </div>
               <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
                 <button
@@ -63,7 +63,7 @@ function ListStadium() {
                     setPageSize(100);
                   }}
                 >
-                  View All
+              عرض 100
                 </button>
                 <button
                   onClick={() => {
@@ -82,7 +82,7 @@ function ListStadium() {
                   >
                     <path d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z"></path>
                   </svg>
-                  Add Stadium
+                  <span>اضافة ملعب</span>
                 </button>
               </div>
             </div>
@@ -93,7 +93,7 @@ function ListStadium() {
                 <tr>
                   <th class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
                     <p class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500">
-                      ID
+                      رقم الملعب
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -113,7 +113,7 @@ function ListStadium() {
                   </th>
                   <th class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
                     <p class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500">
-                      Name
+                     الاسم
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -133,7 +133,7 @@ function ListStadium() {
                   </th>
                   <th class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
                     <p class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500">
-                      balance
+                  سعر الدخول
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -175,14 +175,14 @@ function ListStadium() {
                         </div>
                       </div>
                     </td>
-                    <td class="p-3 border-b border-slate-200">
-                      <div class="flex flex-col">
+                    <td class="p-3 border-b  text-right border-slate-200">
+                     
                         <p class="text-sm font-semibold text-slate-700">
                           {item.name}
                         </p>
-                      </div>
+                    
                     </td>
-                    <td class="p-3 border-b border-slate-200">
+                    <td class="p-3 border-b text-right border-slate-200">
                       <div class="flex flex-col">
                         <p class="text-sm font-semibold text-slate-700">
                           {item.balance}
@@ -468,4 +468,4 @@ function ListStadium() {
   );
 }
 
-export default ListStadium;
+export default ListManager;

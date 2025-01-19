@@ -16,7 +16,7 @@ export default function NavBar() {
 
   // List of items
   const menuItems = [
-    { name: "Dashboard", link: "/", icon: <MdDashboard size={30} /> },
+   
     { name: "Users", link: "/users", icon: <FaUsers size={30} /> },
     { name: "Players", link: "/Players", icon: <IoIosMan size={30} /> },
     { name: "MStadium", link: "/MStadium", icon: <MdCategory size={30} /> },
